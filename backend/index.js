@@ -1,16 +1,21 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
-const connectDB = require("./lib/db");
-const { getSummary } = require("./helpers/ai.js");
-
+const redisClient = require("./lib/redis");
 // Load environment variables
 dotenv.config({ path: "./.env" });
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-connectDB();
+// Handle Redis connection events
+redisClient.on("connect", () => {
+  console.log("Successfully connected to Redis");
+});
+
+redisClient.on("error", (error) => {
+  console.error("Redis connection error:", error);
+});
 
 // Middleware
 app.use(cors());
