@@ -7,7 +7,8 @@ const {
   listAllUnion,
 } = require("../helpers/storage");
 
-const Union = require("../models/Union");
+const redisClient = require("../lib/redis");
+
 const { sendPushNotification } = require("./notificationController");
 const {
   createGroupChat,
@@ -162,12 +163,22 @@ const createNewUnion = async (req, res) => {
 
     const chatId = await createGroupChat(req, res);
 
-    await Union.create({
-      proxyAddress,
-      chainId,
-      members: [],
-      chatId,
-    });
+    // await Union.create({
+    //   proxyAddress,
+    //   chainId,
+    //   members: [],
+    //   chatId,
+    // });
+
+    await redisClient.set(
+      `union:${chainId}:${proxyAddress}`,
+      JSON.stringify({
+        proxyAddress,
+        chainId,
+        members: [],
+        chatId,
+      })
+    );
 
     await uploadUnionMetadata(chainId, proxyAddress, unionMetadata);
 
@@ -217,17 +228,24 @@ const addMemberToUnion = async (req, res) => {
       throw new Error("Invalid chainId");
     }
 
-    const union = await Union.findOne({ chainId, proxyAddress: address });
+    // const union = await Union.findOne({ chainId, proxyAddress: address });
 
-    if (!union) {
+    const unionData = await redisClient.get(`union:${chainId}:${address}`);
+
+    if (!unionData) {
       throw new Error("Union not found");
     }
 
-    if (union.members.includes(member)) {
+    if (unionData.members.includes(member)) {
       throw new Error("Member already exists");
     }
 
-    union.members.push(member);
+    unionData.members.push(member);
+
+    await redisClient.set(
+      `union:${chainId}:${address}`,
+      JSON.stringify(unionData)
+    );
 
     req.body.title = "New Member Joined";
     req.body.description = `${member} has joined the Union: ${address}`;
@@ -241,7 +259,7 @@ const addMemberToUnion = async (req, res) => {
 
     await joinGroupChat(req, res);
 
-    await union.save();
+    // await union.save();
 
     res.json({
       success: true,
@@ -277,19 +295,26 @@ const removeMemberFromUnion = async (req, res) => {
       throw new Error("Invalid chainId");
     }
 
-    const union = await Union.findOne({ chainId, proxyAddress: address });
+    // const union = await Union.findOne({ chainId, proxyAddress: address });
 
-    if (!union) {
+    const unionData = await redisClient.get(`union:${chainId}:${address}`);
+
+    if (!unionData) {
       throw new Error("Union not found");
     }
 
-    if (!union.members.includes(member)) {
+    if (!unionData.members.includes(member)) {
       throw new Error("Member does not exist");
     }
 
-    union.members = union.members.filter((m) => m !== member);
+    // union.members = union.members.filter((m) => m !== member);
 
-    await union.save();
+    // await union.save();
+
+    await redisClient.set(
+      `union:${chainId}:${address}`,
+      JSON.stringify(unionData)
+    );
 
     req.body.title = "Member Left Union";
     req.body.description = `${member} has left the Union: ${address}`;
@@ -331,15 +356,17 @@ const getUnionMembers = async (req, res) => {
       throw new Error("Invalid chainId");
     }
 
-    const union = await Union.findOne({ chainId, proxyAddress: address });
+    // const union = await Union.findOne({ chainId, proxyAddress: address });
 
-    if (!union) {
+    const unionData = await redisClient.get(`union:${chainId}:${address}`);
+
+    if (!unionData) {
       throw new Error("Union not found");
     }
 
     res.json({
       success: true,
-      members: union.members,
+      members: unionData.members,
     });
   } catch (err) {
     res.json({
@@ -357,15 +384,17 @@ const getUnionChatId = async (req, res) => {
       throw new Error("ChainId and address are required");
     }
 
-    const union = await Union.findOne({ chainId, proxyAddress: address });
+    // const union = await Union.findOne({ chainId, proxyAddress: address });
 
-    if (!union) {
+    const unionData = await redisClient.get(`union:${chainId}:${address}`);
+
+    if (!unionData) {
       throw new Error("Union not found");
     }
 
     res.json({
       success: true,
-      chatId: union.chatId,
+      chatId: unionData.chatId,
     });
   } catch (err) {
     res.json({
