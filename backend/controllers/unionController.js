@@ -137,7 +137,9 @@ const createNewUnion = async (req, res) => {
       to: currentChain.deployments.UnionProxyFactory.address,
       data: tx,
       value: 0,
-      gasLimit: 2000000,
+      maxPriorityFeePerGas: 25000000000, // 25 Gwei (higher than required 20 Gwei)
+      maxFeePerGas: 50000000000, //
+      gasLimit: 5000000,
     });
 
     await txResponse.wait();

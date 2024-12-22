@@ -24,11 +24,6 @@ export default function LandingContent() {
       description:
         "Rank-choice voting (allowing one to express preference of certain choices over others).",
     },
-    {
-      title: "Flare",
-      description:
-        "Stake USDT to resolve your voting power as Flare. Powered by Flare.",
-    },
   ];
 
   return (
@@ -65,7 +60,8 @@ export default function LandingContent() {
           <div className="text-black text-xl mt-10">at</div>
 
           <div className="text-black text-3xl mt-1">
-            ETH <p className="font-yatraone italic text-6xl">กรุงเทพมหานคร</p>{" "}
+            NEO X GRIND{" "}
+            <p className="font-yatraone italic text-6xl">HACKATHON</p>{" "}
             <p className="-mt-2">2024</p>
           </div>
         </div>

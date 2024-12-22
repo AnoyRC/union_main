@@ -17,6 +17,20 @@ export default function ChainProvider({ children }) {
     if (localStorage.getItem("chainId")) {
       const chainId = localStorage.getItem("chainId");
 
+      const currentConfig = config.chains.find(
+        (chain) => chain.chainId === Number(chainId)
+      );
+
+      if (!currentConfig) {
+        localStorage.removeItem("chainId");
+
+        dispatch(setChainId(config.chains[0].chainId));
+
+        setCheck(true);
+
+        return;
+      }
+
       dispatch(setChainId(Number(chainId)));
 
       setCheck(true);

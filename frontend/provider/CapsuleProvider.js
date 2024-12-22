@@ -9,17 +9,8 @@ import {
   zerionWallet,
 } from "@usecapsule/evm-wallet-connectors";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  baseSepolia,
-  flareTestnet,
-  flowTestnet,
-  lineaSepolia,
-  rootstockTestnet,
-  scrollSepolia,
-  zircuitTestnet,
-} from "wagmi/chains";
 import { http } from "wagmi";
-import { romeTestnet } from "./chains/RomeTestnet";
+import { neoxTestnet } from "./chains/NeoXTestnet";
 
 const queryClient = new QueryClient();
 
@@ -30,25 +21,9 @@ const CapsuleProvider = ({ children }) => {
         config={{
           projectId: "32c27f9ae960e76b42818bcc3a60ea05",
           appName: "Union",
-          chains: [
-            flareTestnet,
-            romeTestnet,
-            flowTestnet,
-            scrollSepolia,
-            baseSepolia,
-            rootstockTestnet,
-            zircuitTestnet,
-            lineaSepolia,
-          ],
+          chains: [neoxTestnet],
           transports: {
-            [flareTestnet.id]: http(),
-            [romeTestnet.id]: http(),
-            [flowTestnet.id]: http(),
-            [scrollSepolia.id]: http(),
-            [baseSepolia.id]: http(),
-            [rootstockTestnet.id]: http(),
-            [zircuitTestnet.id]: http(),
-            [lineaSepolia.id]: http(),
+            [neoxTestnet.id]: http(),
           },
           wallets: [
             metaMaskWallet,

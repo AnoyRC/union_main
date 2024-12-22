@@ -176,7 +176,9 @@ const createNewProposal = async (req, res) => {
       to: dao.address,
       data: unsignedTx,
       value: 0,
-      gasLimit: 2000000,
+      maxPriorityFeePerGas: 25000000000, // 25 Gwei (higher than required 20 Gwei)
+      maxFeePerGas: 50000000000, //
+      gasLimit: 5000000,
     });
 
     await tx.wait();

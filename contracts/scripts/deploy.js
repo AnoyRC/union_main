@@ -11,8 +11,10 @@ async function main() {
 
   console.log("Deploying contracts with the account:", deployer.address);
 
-  const contract = await hre.ethers.deployContract("NounsNFT", [], {
-    gasLimit: 4000000,
+  const contract = await hre.ethers.deployContract("UnionProxyFactory", [], {
+    maxPriorityFeePerGas: 25000000000, // 25 Gwei (higher than required 20 Gwei)
+    maxFeePerGas: 50000000000, //
+    gasLimit: 5000000,
   });
 
   console.log("Contract address:", await contract.getAddress());
