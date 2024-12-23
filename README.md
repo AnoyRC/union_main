@@ -5,7 +5,7 @@ Unite with other delegators to maximize your voting impact and influence decisio
 ![Made-With-React](https://img.shields.io/badge/MADE%20WITH-NEXT-000000.svg?colorA=222222&style=for-the-badge&logoWidth=14&logo=nextdotjs)
 ![Made-With-Tailwind](https://img.shields.io/badge/MADE%20WITH-TAILWIND-06B6D4.svg?colorA=222222&style=for-the-badge&logoWidth=14&logo=tailwindcss)
 ![Made-With-Javascript](https://img.shields.io/badge/MADE%20WITH-Javascript-ffd000.svg?colorA=222222&style=for-the-badge&logoWidth=14&logo=javascript)
-![Made-With-NEO](https://img.shields.io/badge/Deployed%20on-NEO-00ffae.svg?colorA=222222&style=for-the-badge&logoWidth=14)
+![Made-With-NEOZ](https://img.shields.io/badge/Deployed%20on-NEOX-00ffae.svg?colorA=222222&style=for-the-badge&logoWidth=14)
 
 > **Union** is a platform that allows delegators to unite and maximize their voting impact. Delegators delegate their voting power to a union. This union then votes on behalf of the delegators, based on the majority vote of the delegators.
 
@@ -17,19 +17,18 @@ Unite with other delegators to maximize your voting impact and influence decisio
 > 4.  **NFT Union**: Unique voting power based on NFT holdings and attributes.
 > 5.  **Quadratic Union**: Rank-choice voting (allowing one to express preference of certain choices over others).
 
-This is the Repo for _[getUnion.xyz](https://getUnion.xyz/)_.
+This is the Repo for _[getUnion.tech](https://getUnion.tech/)_ made during NEOX GRIND Hackathon.
 
 ## Deployments
 
-- **Flare Testnet**
+- **NEO X Testnet**
 
-  - Union Proxy Factory - [0x62CB235Cf18Af7b62B918d93DA89212bc89daFdc](https://coston2-explorer.flare.network/address/0x62CB235Cf18Af7b62B918d93DA89212bc89daFdc)
-  - Conviction Union - [0x17DDF0820846565B5CF237E80Ad3D5A2bE3CCe3D](https://coston2-explorer.flare.network/address/0x17DDF0820846565B5CF237E80Ad3D5A2bE3CCe3D)
-  - Equal Union - [0x0bB84e676150E4721c9Eb21E6863fBD40A8898E3](https://coston2-explorer.flare.network/address/0x0bB84e676150E4721c9Eb21E6863fBD40A8898E3)
-  - NFT Union - [0xFA2d0B8DE8c95c49615eAd2CAb22D26CB9998445](https://coston2-explorer.flare.network/address/0xFA2d0B8DE8c95c49615eAd2CAb22D26CB9998445)
-  - Traditional Union - [0x51f33358d4f735541068df71ff73Ad5dBEd67ad6](https://coston2-explorer.flare.network/address/0x51f33358d4f735541068df71ff73Ad5dBEd67ad6)
-  - QuadraticUnion - [0xDe45479eB204834f3Db76161bB8DE48a5A3B3D32](https://coston2-explorer.flare.network/address/0xDe45479eB204834f3Db76161bB8DE48a5A3B3D32)
-  - FlareUnion - [0xC1AEA53f0c1EF35219A90Bec9495D3561a4B5951](https://coston2-explorer.flare.network/address/0xC1AEA53f0c1EF35219A90Bec9495D3561a4B5951)
+  - Union Proxy Factory - [0x614ae60954f0AEdd172141A9C52052a8B422DEfd](https://xt4scan.ngd.network/address/0x614ae60954f0AEdd172141A9C52052a8B422DEfd)
+  - Conviction Union - [0x44950f083691828A07c17d2A927B435e8B272F6D](https://xt4scan.ngd.network/address/0x44950f083691828A07c17d2A927B435e8B272F6D)
+  - Equal Union - [0x1275917daAE6389C61c7B1E8199724D0b46Ed10f](https://xt4scan.ngd.network/address/0x1275917daAE6389C61c7B1E8199724D0b46Ed10f)
+  - NFT Union - [0x0c17B9e142a0DDb42f075b0E2f1988691ea1d75a](https://xt4scan.ngd.network/address/0x0c17B9e142a0DDb42f075b0E2f1988691ea1d75a)
+  - Traditional Union - [0xC4e20B3BD1922A02c6DAC500De5754E3CC4046BB](https://xt4scan.ngd.network/address/0xC4e20B3BD1922A02c6DAC500De5754E3CC4046BB)
+  - QuadraticUnion - [0xE34906Eda6Cf2cafFa1d567523C7954fDf9E80E0](https://xt4scan.ngd.network/address/0xE34906Eda6Cf2cafFa1d567523C7954fDf9E80E0)
 
 #
 
