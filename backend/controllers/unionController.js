@@ -57,9 +57,8 @@ const getAllUnion = async (req, res) => {
     const unionResponse = await listAllUnion(chainId);
 
     const allUnions = unionResponse.map((union) => {
-      return union.Name.split("_")[1].split(".")[0];
+      return union.name.split(".json")[0];
     });
-
     res.json({
       success: true,
       unions: allUnions,
@@ -230,7 +229,9 @@ const addMemberToUnion = async (req, res) => {
 
     // const union = await Union.findOne({ chainId, proxyAddress: address });
 
-    const unionData = await redisClient.get(`union:${chainId}:${address}`);
+    const unionData = JSON.parse(
+      await redisClient.get(`union:${chainId}:${address}`)
+    );
 
     if (!unionData) {
       throw new Error("Union not found");
@@ -254,7 +255,7 @@ const addMemberToUnion = async (req, res) => {
 
     await sendPushNotification(req, res);
 
-    req.chatId = union.chatId;
+    req.chatId = unionData.chatId;
     req.address = member;
 
     await joinGroupChat(req, res);
@@ -263,7 +264,7 @@ const addMemberToUnion = async (req, res) => {
 
     res.json({
       success: true,
-      members: union.members,
+      members: unionData.members,
     });
   } catch (err) {
     res.json({
@@ -297,7 +298,9 @@ const removeMemberFromUnion = async (req, res) => {
 
     // const union = await Union.findOne({ chainId, proxyAddress: address });
 
-    const unionData = await redisClient.get(`union:${chainId}:${address}`);
+    const unionData = JSON.parse(
+      await redisClient.get(`union:${chainId}:${address}`)
+    );
 
     if (!unionData) {
       throw new Error("Union not found");
@@ -308,6 +311,8 @@ const removeMemberFromUnion = async (req, res) => {
     }
 
     // union.members = union.members.filter((m) => m !== member);
+
+    unionData.members = unionData.members.filter((m) => m !== member);
 
     // await union.save();
 
@@ -323,14 +328,14 @@ const removeMemberFromUnion = async (req, res) => {
 
     await sendPushNotification(req, res);
 
-    req.chatId = union.chatId;
+    req.chatId = unionData.chatId;
     req.address = member;
 
     await leaveGroupChat(req, res);
 
     res.json({
       success: true,
-      members: union.members,
+      members: unionData.members,
     });
   } catch (err) {
     res.json({
@@ -358,7 +363,9 @@ const getUnionMembers = async (req, res) => {
 
     // const union = await Union.findOne({ chainId, proxyAddress: address });
 
-    const unionData = await redisClient.get(`union:${chainId}:${address}`);
+    const unionData = JSON.parse(
+      await redisClient.get(`union:${chainId}:${address}`)
+    );
 
     if (!unionData) {
       throw new Error("Union not found");
@@ -386,7 +393,9 @@ const getUnionChatId = async (req, res) => {
 
     // const union = await Union.findOne({ chainId, proxyAddress: address });
 
-    const unionData = await redisClient.get(`union:${chainId}:${address}`);
+    const unionData = JSON.parse(
+      await redisClient.get(`union:${chainId}:${address}`)
+    );
 
     if (!unionData) {
       throw new Error("Union not found");

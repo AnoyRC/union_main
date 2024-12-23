@@ -219,6 +219,30 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "offset",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "length",
+        "type": "uint256"
+      }
+    ],
+    "name": "getStorageAt",
+    "outputs": [
+      {
+        "internalType": "bytes",
+        "name": "",
+        "type": "bytes"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "member",
         "type": "address"
@@ -283,44 +307,22 @@
         "internalType": "uint256",
         "name": "proposalId",
         "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "voter",
+        "type": "address"
       }
     ],
-    "name": "importProposal",
+    "name": "hasVoted",
     "outputs": [
       {
-        "components": [
-          {
-            "internalType": "address",
-            "name": "proposer",
-            "type": "address"
-          },
-          {
-            "internalType": "address",
-            "name": "target",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "ipfsHash",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "startBlock",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "endBlock",
-            "type": "uint256"
-          }
-        ],
-        "internalType": "struct BaseUnion.Proposal",
+        "internalType": "bool",
         "name": "",
-        "type": "tuple"
+        "type": "bool"
       }
     ],
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -453,45 +455,6 @@
   {
     "inputs": [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "name": "proposals",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "proposer",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "target",
-        "type": "address"
-      },
-      {
-        "internalType": "string",
-        "name": "ipfsHash",
-        "type": "string"
-      },
-      {
-        "internalType": "uint256",
-        "name": "startBlock",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "endBlock",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "bytes32",
         "name": "role",
         "type": "bytes32"
@@ -541,6 +504,24 @@
   {
     "inputs": [
       {
+        "internalType": "address",
+        "name": "targetContract",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "calldataPayload",
+        "type": "bytes"
+      }
+    ],
+    "name": "simulateAndRevert",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "bytes4",
         "name": "interfaceId",
         "type": "bytes4"
@@ -574,6 +555,19 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "proposalId",
+        "type": "uint256"
+      }
+    ],
+    "name": "voteFinal",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
