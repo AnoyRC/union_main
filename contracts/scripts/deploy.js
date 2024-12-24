@@ -11,7 +11,7 @@ async function main() {
 
   console.log("Deploying contracts with the account:", deployer.address);
 
-  const contract = await hre.ethers.deployContract("UnionProxyFactory", [], {
+  const contract = await hre.ethers.deployContract("NounsNFT", [], {
     maxPriorityFeePerGas: 25000000000, // 25 Gwei (higher than required 20 Gwei)
     maxFeePerGas: 50000000000, //
     gasLimit: 5000000,

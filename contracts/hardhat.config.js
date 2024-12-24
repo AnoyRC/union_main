@@ -26,10 +26,15 @@ module.exports = {
       url: `https://neoxt4seed1.ngd.network/`,
       accounts: [PRIVATE_KEY],
     },
+    neox: {
+      url: `https://mainnet-1.rpc.banelabs.org/`,
+      accounts: [PRIVATE_KEY],
+    },
   },
   etherscan: {
     apiKey: {
       neoxtestnet: "YOUR_API_KEY",
+      neox: "YOUR_API_KEY",
     },
     customChains: [
       {
@@ -38,6 +43,14 @@ module.exports = {
         urls: {
           apiURL: "https://xt4scan.ngd.network/api",
           browserURL: "https://xt4scan.ngd.network/",
+        },
+      },
+      {
+        network: "neox",
+        chainId: 47763,
+        urls: {
+          apiURL: "https://xexplorer.neo.org/api",
+          browserURL: "https://xexplorer.neo.org/",
         },
       },
     ],
