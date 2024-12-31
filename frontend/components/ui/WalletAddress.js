@@ -2,8 +2,6 @@
 
 import React from "react";
 import Avatar from "boring-avatars";
-import { usePrivy } from "@privy-io/react-auth";
-
 import shortenAddress from "@/utils/shortenAddress";
 
 const FullWalletAddress = ({ size = "text-base", walletAddress }) => {

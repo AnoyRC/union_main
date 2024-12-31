@@ -5,7 +5,6 @@ import "./globals.css";
 
 import ReduxProvider from "@/provider/ReduxProvider";
 import { Toaster } from "sonner";
-import CapsuleClient from "@/provider/CapsuleClient";
 import CapsuleProvider from "@/provider/CapsuleProvider";
 
 const geistSans = localFont({

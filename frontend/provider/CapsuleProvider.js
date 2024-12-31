@@ -1,17 +1,8 @@
 "use client";
 
-import {
-  CapsuleEvmProvider,
-  coinbaseWallet,
-  metaMaskWallet,
-  rainbowWallet,
-  walletConnectWallet,
-  zerionWallet,
-} from "@usecapsule/evm-wallet-connectors";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { http, WagmiProvider } from "wagmi";
-import { neoxTestnet } from "./chains/NeoXTestnet";
-import { neox } from "./chains/NeoX";
+import { WagmiProvider } from "wagmi";
+
 import { config } from "./wagmiConfig";
 
 const queryClient = new QueryClient();

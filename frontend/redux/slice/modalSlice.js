@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CapsuleModal } from "@usecapsule/react-sdk";
 
 const testSlice = createSlice({
   name: "modal",

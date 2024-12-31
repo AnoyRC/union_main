@@ -3,17 +3,10 @@
 import config from "@/lib/config";
 import { setIsLoggedIn } from "@/redux/slice/capsuleSlice";
 import { useEthersSigner } from "@/utils/ethersSigner";
-import { CapsuleEthersV5Signer } from "@usecapsule/ethers-v5-integration";
-import Capsule, { Environment } from "@usecapsule/react-sdk";
 import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { useAccount, useDisconnect, useSwitchChain } from "wagmi";
-
-const capsule = new Capsule(
-  Environment.BETA,
-  process.env.NEXT_PUBLIC_CAPSULE_API_KEY
-);
 
 export default function useCapsule() {
   const { address, chainId, isConnected } = useAccount();
