@@ -16,7 +16,7 @@ const JoinUnionButton = ({ chainId, members, unionMetadata, unionAddress }) => {
   const [tokenToDelegate, setTokenToDelegate] = React.useState("");
   const { joinUnionCommon, joinConvictionUnion } = useUnion();
   const isLoading = useSelector((state) => state.modal.isLoading);
-  const isConnected = useSelector((state) => state.capsule.isLoggedIn);
+  const { isConnected } = useAccount();
   const [timeToLock, setTimeToLock] = React.useState("");
 
   const checkMember = async () => {

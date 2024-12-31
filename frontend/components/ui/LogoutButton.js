@@ -7,11 +7,12 @@ import React from "react";
 import Tooltip from "./Tooltip";
 import { useSelector } from "react-redux";
 import useCapsule from "@/hooks/useCapsule";
+import { useAccount, useDisconnect } from "wagmi";
 
 const LogoutButton = () => {
-  const isLoggedIn = useSelector((state) => state.capsule.isLoggedIn);
-  const { logout } = useCapsule();
-  const disableLogout = !isLoggedIn;
+  const { isConnected } = useAccount();
+  const { disconnect } = useDisconnect();
+  const disableLogout = !isConnected;
 
   if (disableLogout) {
     return null;
@@ -22,7 +23,7 @@ const LogoutButton = () => {
       <Tooltip content="Logout">
         <button
           onClick={() => {
-            logout();
+            disconnect();
           }}
           className="h-fit w-fit block p-2.5 border rounded-full border-gray-700 hover:border-gray-500 hover:bg-gray-900 mx-2"
         >

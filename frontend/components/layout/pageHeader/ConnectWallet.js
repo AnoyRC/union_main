@@ -3,11 +3,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { toggleCapsuleModal } from "@/redux/slice/modalSlice";
+import {
+  toggleCapsuleModal,
+  toggleConnectModal,
+} from "@/redux/slice/modalSlice";
+import { useAccount } from "wagmi";
 
 const ConnectWallet = ({ width }) => {
   const dispatch = useDispatch();
-  const isConnected = useSelector((state) => state.capsule.isLoggedIn);
+  const { isConnected } = useAccount();
 
   return (
     !isConnected && (
@@ -16,7 +20,7 @@ const ConnectWallet = ({ width }) => {
           width: width,
         }}
         onClick={() => {
-          dispatch(toggleCapsuleModal(true));
+          dispatch(toggleConnectModal());
         }}
         className="border border-gray-700 rounded-full font-medium px-4 py-2"
       >

@@ -4,11 +4,13 @@ import Sidebar from "@/components/layout/sidebar/Sidebar";
 import PageHeader from "@/components/layout/pageHeader/PageHeader";
 import ChainProvider from "@/provider/ChainProvider";
 import LoadingModal from "@/components/modal/LoadingModal";
+import ConnectWalletModal from "@/components/modal/ConnectWalletModal";
 
 const LayoutMain = ({ children }) => {
   return (
     <ChainProvider>
       <LoadingModal />
+      <ConnectWalletModal />
       <div className="flex w-screen h-screen overflow-hidden">
         <Sidebar />
 

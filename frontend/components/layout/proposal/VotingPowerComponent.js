@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useAccount } from "wagmi";
 
 const VotingPowerComponent = ({ chainId, unionAddress, unionMetadata }) => {
-  const isConnected = useSelector((state) => state.capsule.isLoggedIn);
+  const { isConnected } = useAccount();
   const [votingPower, setVotingPower] = React.useState(0);
   const { address } = useAccount();
   const { getAddress } = useCapsule();

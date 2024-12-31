@@ -13,12 +13,12 @@ export default function LeaveUnionButton({
   unionMetadata,
   unionAddress,
 }) {
-  const { address } = useAccount();
+  const { address, isConnected } = useAccount();
   const { getAddress } = useCapsule();
   const currentChain = config.chains.find((c) => c.chainId === chainId);
   const [isMember, setIsMember] = React.useState(false);
   const isLoading = useSelector((state) => state.modal.isLoading);
-  const isConnected = useSelector((state) => state.capsule.isLoggedIn);
+
   const { leaveUnion } = useUnion();
 
   const checkMember = async () => {

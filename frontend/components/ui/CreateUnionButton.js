@@ -7,9 +7,10 @@ import React from "react";
 import Tooltip from "./Tooltip";
 import SidebarItems from "../layout/sidebar/SidebarItems";
 import { useSelector } from "react-redux";
+import { useAccount } from "wagmi";
 
 const CreateUnionButton = () => {
-  const isConnected = useSelector((state) => state.capsule.isLoggedIn);
+  const { isConnected } = useAccount();
 
   const disableLogout = !isConnected;
 

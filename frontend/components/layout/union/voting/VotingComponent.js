@@ -24,7 +24,7 @@ const VotingComponent = ({
   const currentChain = config.chains.find((chain) => chain.chainId === chainId);
   const { hasAddressVoted } = useUnion();
   const [isUnionVoted, setIsUnionVoted] = useState(false);
-  const isConnected = useSelector((state) => state.capsule.isLoggedIn);
+  const { isConnected } = useAccount();
   const [votingPower, setVotingPower] = React.useState(0);
   const [hasVoted, setHasVoted] = React.useState(false);
   const { address } = useAccount();

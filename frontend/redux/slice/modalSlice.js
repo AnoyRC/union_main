@@ -9,6 +9,7 @@ const testSlice = createSlice({
     contractsModal: false,
     CapsuleModal: false,
     isLoading: false,
+    connectModal: false,
   },
 
   reducers: {
@@ -18,6 +19,10 @@ const testSlice = createSlice({
 
     toggleContractsModal: (state) => {
       state.contractsModal = !state.contractsModal;
+    },
+
+    toggleConnectModal: (state) => {
+      state.connectModal = !state.connectModal;
     },
 
     toggleCapsuleModal: (state, action) => {
@@ -35,6 +40,7 @@ export const {
   toggleContractsModal,
   toggleCapsuleModal,
   setLoading,
+  toggleConnectModal,
 } = testSlice.actions;
 
 export default testSlice.reducer;

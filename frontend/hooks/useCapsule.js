@@ -8,7 +8,7 @@ import Capsule, { Environment } from "@usecapsule/react-sdk";
 import { ethers } from "ethers";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
-import { useAccount } from "wagmi";
+import { useAccount, useDisconnect, useSwitchChain } from "wagmi";
 
 const capsule = new Capsule(
   Environment.BETA,
@@ -16,27 +16,22 @@ const capsule = new Capsule(
 );
 
 export default function useCapsule() {
-  const { address, chainId } = useAccount();
+  const { address, chainId, isConnected } = useAccount();
   const dispatch = useDispatch();
+  const { disconnect } = useDisconnect();
+  const { switchChain } = useSwitchChain();
   const signer = useEthersSigner();
   const isLoggedIn = async () => {
     const isLoggedIn = await capsule.isFullyLoggedIn();
 
     return isLoggedIn;
   };
-  const isConnected = useSelector((state) => state.capsule.isLoggedIn);
 
   const getAddress = async (rpcUrl) => {
     try {
       if (!isConnected) return ethers.constants.AddressZero;
 
       if (address) return address;
-
-      const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
-
-      const ethersSigner = new CapsuleEthersV5Signer(capsule, provider);
-
-      return await ethersSigner.getAddress();
     } catch (error) {
       return ethers.constants.AddressZero;
     }
@@ -44,34 +39,41 @@ export default function useCapsule() {
 
   const getSigner = async (chainID) => {
     if (chainId !== chainID) {
-      const currentChain = config.chains.find((c) => c.chainId === chainID);
+      const currentChain = config.chains.find(
+        (c) => c.chainId === Number(chainID)
+      );
 
       toast.error(`Please switch to the ${currentChain.name} network`);
 
       throw new Error("Network mismatch");
     }
 
-    if (!address) {
-      const provider = new ethers.providers.JsonRpcProvider(
-        currentChain.rpcUrl
-      );
-      const ethersSigner = new CapsuleEthersV5Signer(capsule, provider);
-      return ethersSigner;
-    }
-
     return signer;
   };
 
+  const switchNetwork = async (chainID) => {
+    const currentChain = config.chains.find(
+      (c) => c.chainId === Number(chainID)
+    );
+
+    if (!currentChain) {
+      throw new Error("Invalid chainId");
+    }
+
+    switchChain({
+      chainId: currentChain.chainId,
+    });
+  };
+
   const logout = async () => {
-    await capsule.logout();
-    dispatch(setIsLoggedIn(false));
+    disconnect();
   };
 
   return {
-    capsule,
     isLoggedIn,
     logout,
     getAddress,
     getSigner,
+    switchNetwork,
   };
 }

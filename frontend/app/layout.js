@@ -47,10 +47,7 @@ export default function RootLayout({ children }) {
         <Toaster richColors position="bottom-center" />
 
         <ReduxProvider>
-          <CapsuleProvider>
-            <CapsuleClient />
-            {children}
-          </CapsuleProvider>
+          <CapsuleProvider>{children}</CapsuleProvider>
         </ReduxProvider>
       </body>
     </html>
